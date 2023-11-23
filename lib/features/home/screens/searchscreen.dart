@@ -3,6 +3,7 @@ import 'package:easybook/features/home/screens/searchlistview.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+// ignore: must_be_immutable
 class SearchScreen extends StatelessWidget {
   SearchScreen({super.key, this.ishome = false});
 

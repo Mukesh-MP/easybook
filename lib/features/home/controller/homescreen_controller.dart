@@ -1,8 +1,7 @@
 import 'dart:developer';
 
 import 'package:easybook/features/home/model/bookingdetails_model.dart';
-import 'package:easybook/features/home/model/firebase_response_model.dart';
-import 'package:easybook/features/home/widgets/bottomsheet.dart';
+
 import 'package:easybook/features/splash/screen/splash_screen.dart';
 import 'package:easybook/features/team/screens/team_screen.dart';
 import 'package:flutter/material.dart';

@@ -1,9 +1,6 @@
-import 'dart:math';
-
 import 'package:easybook/features/home/controller/homescreen_controller.dart';
 import 'package:easybook/features/home/screens/searchscreen.dart';
 import 'package:easybook/features/splash/screen/splash_screen.dart';
-import 'package:easybook/features/team/screens/team_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
