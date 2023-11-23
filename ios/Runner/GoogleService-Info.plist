@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyDIewVgAQA-55k4OOQno0_r6kvo1uoMLI0</string>
+	<key>GCM_SENDER_ID</key>
+	<string>999546256777</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.easybook</string>
+	<key>PROJECT_ID</key>
+	<string>easybook-1d1eb</string>
+	<key>STORAGE_BUCKET</key>
+	<string>easybook-1d1eb.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:999546256777:ios:18b0d2a05830784773f558</string>
+	<key>DATABASE_URL</key>
+	<string>https://easybook-1d1eb-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>

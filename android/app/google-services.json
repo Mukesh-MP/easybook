@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "999546256777",
+    "firebase_url": "https://easybook-1d1eb-default-rtdb.firebaseio.com",
+    "project_id": "easybook-1d1eb",
+    "storage_bucket": "easybook-1d1eb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:999546256777:android:4526f80c8fdbe9e273f558",
+        "android_client_info": {
+          "package_name": "com.ddesign.easybook"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdBl3mA9098mobqG_UoseUXakzaCNMfKU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
