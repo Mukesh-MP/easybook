@@ -2,8 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easybook/features/home/controller/homescreen_controller.dart';
 
 import 'package:easybook/features/home/screens/homescreen.dart';
+import 'package:easybook/features/login/controller/login_controller.dart';
 import 'package:easybook/features/splash/screen/splash_screen.dart';
 import 'package:easybook/features/team/controller/team_controller.dart';
+import 'package:easybook/global/securestorage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -20,13 +22,14 @@ class TeamScreen extends StatelessWidget {
 
   var teamController = Get.put(TeamController());
   var homeController = Get.put(HomeScreenController());
+  String? clientId = SecureStorage().clientId;
 
   @override
   Widget build(BuildContext context) {
     final Stream<QuerySnapshot> messageStream = FirebaseFirestore.instance
-        .collection('bookings${homeController.clientId}')
+        .collection('bookings${clientId}')
         .where("teamId", isEqualTo: teamId)
-        .orderBy("date", descending: true)
+        // .orderBy("date", descending: true)
         // .orderBy("date", descending: true)
         .snapshots();
     return StreamBuilder(

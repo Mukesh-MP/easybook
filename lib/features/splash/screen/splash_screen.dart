@@ -1,4 +1,5 @@
 import 'package:easybook/features/home/screens/homescreen.dart';
+import 'package:easybook/features/login/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -9,7 +10,7 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Future.delayed(const Duration(seconds: 3), () {
       // Get.to(const LoginScreen());
-      Get.to(() => HomeScreen());
+      Get.to(() => LoginScreen());
     });
     return Scaffold(
       body: Container(

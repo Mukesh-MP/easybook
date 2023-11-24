@@ -4,6 +4,7 @@ import 'package:easybook/features/home/model/bookingdetails_model.dart';
 
 import 'package:easybook/features/splash/screen/splash_screen.dart';
 import 'package:easybook/features/team/screens/team_screen.dart';
+import 'package:easybook/global/securestorage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -15,7 +16,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class HomeScreenController extends GetxController {
   // Firebase
 
-  int clientId = 1;
   RxBool isloading = false.obs;
 
   FirebaseDatabase database = FirebaseDatabase.instance;
@@ -51,6 +51,13 @@ class HomeScreenController extends GetxController {
   List<BookingDetails> uniqueTeamList = [];
 
   RxList filteredSearchList = [].obs;
+  String? clientId;
+
+  @override
+  void onInit() async {
+    super.onInit();
+    clientId = await SecureStorage().clientId;
+  }
 
   filterSearchResultData({String? searchValue}) async {
     log(ref.toString());
