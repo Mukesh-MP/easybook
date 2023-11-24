@@ -295,7 +295,10 @@ Widget dayBookingDetails() {
   var homeController = Get.put(HomeScreenController());
   FirebaseFirestore db = FirebaseFirestore.instance;
   // getTeamList();
-  final ref = db.collection("bookings").get().then((querySnapshot) {
+  final ref = db
+      .collection("bookings${homeController.clientId}")
+      .get()
+      .then((querySnapshot) {
     homeController.detailsData = querySnapshot.docs;
   });
 
@@ -315,7 +318,7 @@ Widget dayBookingDetails() {
   }
 
   final Stream<QuerySnapshot> messageStream = FirebaseFirestore.instance
-      .collection('bookings')
+      .collection('bookings${homeController.clientId}')
       .where("date", isEqualTo: fetchDate)
       // .orderBy("date", descending: true)
       .snapshots();
@@ -432,7 +435,7 @@ Widget dayBookingDetails() {
                                                       Navigator.pop(context);
                                                       FirebaseFirestore.instance
                                                           .collection(
-                                                              'bookings')
+                                                              'bookings${homeController.clientId}')
                                                           .doc(snapshot.data!
                                                               .docs[index].id)
                                                           .delete()

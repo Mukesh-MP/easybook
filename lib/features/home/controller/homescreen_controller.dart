@@ -15,6 +15,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class HomeScreenController extends GetxController {
   // Firebase
 
+  int clientId = 1;
   RxBool isloading = false.obs;
 
   FirebaseDatabase database = FirebaseDatabase.instance;
@@ -50,29 +51,6 @@ class HomeScreenController extends GetxController {
   List<BookingDetails> uniqueTeamList = [];
 
   RxList filteredSearchList = [].obs;
-
-  // fetchFirebaseData() {
-  //   FirebaseFirestore firestore = FirebaseFirestore.instance;
-
-  //   CollectionReference bookings = firestore.collection('bookings');
-
-  //   bookings
-  //       .add({
-  //         "gameId": 3,
-  //         "teamId": 1,
-  //         "teamName": "Yuvadhara kundungal",
-  //         "date": "20/11/2023",
-  //         "fromTime": "10 AM",
-  //         "toTime": "11 AM",
-  //         "status": "Pending",
-  //         "hr": "1",
-  //         "game": "Football",
-  //         "paid": "Paid",
-  //         "mobileNumber": "9645691244"
-  //       })
-  //       .then((value) => log("User Added $value"))
-  //       .catchError((error) => log("Failed to add user: $error"));
-  // }
 
   filterSearchResultData({String? searchValue}) async {
     log(ref.toString());
@@ -213,7 +191,7 @@ class HomeScreenController extends GetxController {
 
     FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-    CollectionReference bookings = firestore.collection('bookings');
+    CollectionReference bookings = firestore.collection('bookings$clientId');
 
     bookings.add({
       "gameId": currentGameId + 1, // detailsData!.length + 1,
@@ -257,14 +235,6 @@ class HomeScreenController extends GetxController {
         return true;
       }
     }).toList();
-  }
-
-  deleteData() {
-    FirebaseFirestore firestore = FirebaseFirestore.instance;
-
-    CollectionReference bookings = firestore.collection('bookings');
-
-    bookings.doc().delete();
   }
 
   getHrs({String? from, String? to}) {
@@ -326,7 +296,7 @@ class HomeScreenController extends GetxController {
   getIdData() async {
     FirebaseFirestore db = FirebaseFirestore.instance;
     QuerySnapshot querySnapshotGameId = await db
-        .collection("bookings")
+        .collection("bookings$clientId")
         .orderBy('gameId', descending: true)
         .limit(1)
         .get();
@@ -337,7 +307,7 @@ class HomeScreenController extends GetxController {
     }
 
     QuerySnapshot querySnapshotTeamId = await db
-        .collection("bookings")
+        .collection("bookings$clientId")
         .orderBy('teamId', descending: true)
         .limit(1)
         .get();

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easybook/features/home/controller/homescreen_controller.dart';
 
 import 'package:easybook/features/home/screens/homescreen.dart';
 import 'package:easybook/features/splash/screen/splash_screen.dart';
@@ -18,11 +19,12 @@ class TeamScreen extends StatelessWidget {
   // List<QueryDocumentSnapshot<Object?>>? teamData = [];
 
   var teamController = Get.put(TeamController());
+  var homeController = Get.put(HomeScreenController());
 
   @override
   Widget build(BuildContext context) {
     final Stream<QuerySnapshot> messageStream = FirebaseFirestore.instance
-        .collection('bookings')
+        .collection('bookings${homeController.clientId}')
         .where("teamId", isEqualTo: teamId)
         .orderBy("date", descending: true)
         // .orderBy("date", descending: true)
