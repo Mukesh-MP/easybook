@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easybook/features/home/screens/homescreen.dart';
 import 'package:easybook/features/splash/screen/splash_screen.dart';
+import 'package:easybook/global/configs.dart';
 import 'package:easybook/global/securestorage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -33,8 +34,8 @@ class LoginController extends GetxController {
 
       if (clientPassword.toString().toUpperCase() ==
           passwordController.text.toString().toUpperCase()) {
-        int clientId = clientData![0]["clientId"];
-        SecureStorage().clientId = clientId.toString();
+        // int clientId = clientData![0]["clientId"];
+        // CommonStorage().clientId = clientId.toString();
 
         Get.to(() => HomeScreen());
       } else {

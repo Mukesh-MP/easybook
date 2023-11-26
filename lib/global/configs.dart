@@ -1,0 +1,3 @@
+class CommonStorage {
+  String? clientId;
+}

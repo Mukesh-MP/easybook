@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ddesign.easybook">
+    <uses-permission android:name="android.permission.SEND_SMS" />
    <application
         android:label="easybook"
         android:name="${applicationName}"

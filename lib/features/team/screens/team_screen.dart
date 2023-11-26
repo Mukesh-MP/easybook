@@ -5,6 +5,7 @@ import 'package:easybook/features/home/screens/homescreen.dart';
 import 'package:easybook/features/login/controller/login_controller.dart';
 import 'package:easybook/features/splash/screen/splash_screen.dart';
 import 'package:easybook/features/team/controller/team_controller.dart';
+import 'package:easybook/global/configs.dart';
 import 'package:easybook/global/securestorage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -22,7 +23,8 @@ class TeamScreen extends StatelessWidget {
 
   var teamController = Get.put(TeamController());
   var homeController = Get.put(HomeScreenController());
-  String? clientId = SecureStorage().clientId;
+  String? clientId = "1";
+  // CommonStorage().clientId;
 
   @override
   Widget build(BuildContext context) {

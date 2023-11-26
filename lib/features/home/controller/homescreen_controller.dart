@@ -4,6 +4,7 @@ import 'package:easybook/features/home/model/bookingdetails_model.dart';
 
 import 'package:easybook/features/splash/screen/splash_screen.dart';
 import 'package:easybook/features/team/screens/team_screen.dart';
+import 'package:easybook/global/configs.dart';
 import 'package:easybook/global/securestorage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -51,12 +52,12 @@ class HomeScreenController extends GetxController {
   List<BookingDetails> uniqueTeamList = [];
 
   RxList filteredSearchList = [].obs;
-  String? clientId;
+  String? clientId = "1";
 
   @override
   void onInit() async {
     super.onInit();
-    clientId = await SecureStorage().clientId;
+    // clientId = await CommonStorage().clientId;
   }
 
   filterSearchResultData({String? searchValue}) async {
