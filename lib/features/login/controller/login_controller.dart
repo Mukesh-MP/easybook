@@ -1,6 +1,9 @@
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easybook/features/home/screens/homescreen.dart';
 import 'package:easybook/features/splash/screen/splash_screen.dart';
+import 'package:easybook/global/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -15,8 +18,8 @@ class LoginController extends GetxController {
   String? clientPassword;
 
   getClientDetails() async {
+    Shared shared = Shared();
     // Obtain shared preferences.
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     FirebaseFirestore data = FirebaseFirestore.instance;
     QuerySnapshot querySnapshotClientId = await data
@@ -37,9 +40,10 @@ class LoginController extends GetxController {
       if (clientPassword.toString().toUpperCase() ==
           passwordController.text.toString().toUpperCase()) {
         int clientId = clientData![0]["clientId"];
+        String clientName = clientData![0]["clientName"];
         // CommonStorage().clientId = clientId.toString();
-
-        await prefs.setString('clientId', clientId.toString());
+        shared.setClientId(clientId.toString());
+        shared.setClientName(clientName.toString());
 
         Get.to(() => HomeScreen());
       } else {

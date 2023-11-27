@@ -35,19 +35,30 @@ class HomeScreen extends StatelessWidget {
             automaticallyImplyLeading: false,
             elevation: 0,
             backgroundColor: Colors.white,
-            title: const Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "Easy",
-                  style: TextStyle(color: Colors.black, fontSize: 20),
-                ),
-                Text(
-                  "Book",
-                  style: TextStyle(color: Colors.red, fontSize: 25),
-                )
-              ],
-            ),
+            title: homeController.clientName == null ||
+                    homeController.clientName == ""
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Easy",
+                        style: TextStyle(color: Colors.black, fontSize: 20),
+                      ),
+                      Text(
+                        "Book",
+                        style: TextStyle(color: Colors.red, fontSize: 25),
+                      )
+                    ],
+                  )
+                : Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        homeController.clientName.toString(),
+                        style: TextStyle(color: Colors.red, fontSize: 25),
+                      )
+                    ],
+                  ),
           ),
           resizeToAvoidBottomInset: false,
           body: Padding(
@@ -93,115 +104,227 @@ class HomeScreen extends StatelessWidget {
                   height: 15,
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SizedBox(
-                      height: 40,
-                      width: 150,
-                      child: TextFormField(
-                        onTap: () async {
-                          await homeController.selectDatePick(
-                              context: context,
-                              initialDate: homeController.dateController.text !=
-                                      ""
-                                  ? DateFormat("dd/MM/yyyy")
-                                      .parse(homeController.dateController.text)
-                                  : DateTime.now()
-                              // .subtract(
-                              //     const Duration(days: 1),
-                              //   ),
-                              );
-                          // initialDate:
-                          //     myOrdersController.dateController.text != ""
-                          //         ? DateFormat("dd/MM/yyyy").parse(
-                          //             myOrdersController.dateController.text)
-                          //         : DateTime.now()
-                          //             .subtract(const Duration(days: 1)));
-                        },
-                        readOnly: true,
-                        controller: homeController.dateController,
-                        style: GoogleFonts.openSans(
-                          color: const Color.fromARGB(255, 41, 42, 41),
-                          fontSize: 14.0,
-                          fontWeight: FontWeight.w400,
-                        ),
-                        keyboardType: TextInputType.datetime,
-                        inputFormatters: [
-                          LengthLimitingTextInputFormatter(10),
-                          FilteringTextInputFormatter.singleLineFormatter,
-                          FilteringTextInputFormatter.allow(RegExp(r'[0-9/]'))
-                        ],
-                        decoration: InputDecoration(
-                            contentPadding: const EdgeInsets.only(left: 12),
-                            filled: true,
-                            fillColor: const Color.fromARGB(255, 220, 246, 250),
-                            hintText: formatter.format(DateTime.parse(
-                                DateTime.now().toString())), //  "DD/MM/YYYY",
-                            floatingLabelBehavior: FloatingLabelBehavior.always,
-                            hintStyle: GoogleFonts.openSans(
+                    Row(
+                      children: [
+                        SizedBox(
+                          height: 40,
+                          width: 150,
+                          child: TextFormField(
+                            onTap: () async {
+                              await homeController.selectDatePick(
+                                  context: context,
+                                  initialDate: homeController
+                                              .dateController.text !=
+                                          ""
+                                      ? DateFormat("dd/MM/yyyy").parse(
+                                          homeController.dateController.text)
+                                      : DateTime.now()
+                                  // .subtract(
+                                  //     const Duration(days: 1),
+                                  //   ),
+                                  );
+                              // initialDate:
+                              //     myOrdersController.dateController.text != ""
+                              //         ? DateFormat("dd/MM/yyyy").parse(
+                              //             myOrdersController.dateController.text)
+                              //         : DateTime.now()
+                              //             .subtract(const Duration(days: 1)));
+                            },
+                            readOnly: true,
+                            controller: homeController.dateController,
+                            style: GoogleFonts.openSans(
                               color: const Color.fromARGB(255, 41, 42, 41),
                               fontSize: 14.0,
                               fontWeight: FontWeight.w400,
                             ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(
-                                color: Color(0xffCEDAD9),
-                                width: 1,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            disabledBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(
-                                color: Color(0xffCEDAD9),
-                                width: 1,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(
-                                color: Color(0xffCEDAD9),
-                                width: 1,
-                              ),
-                              borderRadius: BorderRadius.circular(7.0),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(7.0),
-                            ),
-                            suffixIcon: InkWell(
-                              child: Icon(Icons.calendar_month_outlined,
-                                  color: Colors.grey.shade500),
-                              onTap: () async {
-                                await homeController.selectDatePick(
-                                    context: context,
-                                    initialDate: homeController
-                                                .dateController.text !=
-                                            ""
-                                        ? DateFormat("dd/MM/yyyy").parse(
-                                            homeController.dateController.text)
-                                        : DateTime.now());
-                              },
+                            keyboardType: TextInputType.datetime,
+                            inputFormatters: [
+                              LengthLimitingTextInputFormatter(10),
+                              FilteringTextInputFormatter.singleLineFormatter,
+                              FilteringTextInputFormatter.allow(
+                                  RegExp(r'[0-9/]'))
+                            ],
+                            decoration: InputDecoration(
+                                contentPadding: const EdgeInsets.only(left: 12),
+                                filled: true,
+                                fillColor:
+                                    const Color.fromARGB(255, 220, 246, 250),
+                                hintText: formatter.format(DateTime.parse(
+                                    DateTime.now()
+                                        .toString())), //  "DD/MM/YYYY",
+                                floatingLabelBehavior:
+                                    FloatingLabelBehavior.always,
+                                hintStyle: GoogleFonts.openSans(
+                                  color: const Color.fromARGB(255, 41, 42, 41),
+                                  fontSize: 14.0,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: const BorderSide(
+                                    color: Color(0xffCEDAD9),
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                disabledBorder: OutlineInputBorder(
+                                  borderSide: const BorderSide(
+                                    color: Color(0xffCEDAD9),
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: const BorderSide(
+                                    color: Color(0xffCEDAD9),
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(7.0),
+                                ),
+                                errorBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(7.0),
+                                ),
+                                suffixIcon: InkWell(
+                                  child: Icon(Icons.calendar_month_outlined,
+                                      color: Colors.grey.shade500),
+                                  onTap: () async {
+                                    await homeController.selectDatePick(
+                                        context: context,
+                                        initialDate: homeController
+                                                    .dateController.text !=
+                                                ""
+                                            ? DateFormat("dd/MM/yyyy").parse(
+                                                homeController
+                                                    .dateController.text)
+                                            : DateTime.now());
+                                  },
+                                )),
+                            onChanged: (value) {},
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        ElevatedButton(
+                            style: const ButtonStyle(
+                                backgroundColor:
+                                    MaterialStatePropertyAll(Colors.teal)),
+                            onPressed: () {
+                              popupSheet(context);
+                            },
+                            child: const Row(
+                              children: [
+                                Icon(Icons.add_box_outlined),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Text("Add Slot")
+                              ],
                             )),
-                        onChanged: (value) {},
-                      ),
+                      ],
                     ),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    ElevatedButton(
-                        style: const ButtonStyle(
-                            backgroundColor:
-                                MaterialStatePropertyAll(Colors.teal)),
-                        onPressed: () {
-                          popupSheet(context);
-                        },
-                        child: const Row(
-                          children: [
-                            Icon(Icons.add_box_outlined),
-                            SizedBox(
-                              width: 3,
-                            ),
-                            Text("Add Slot")
-                          ],
-                        ))
+                    Row(
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  contentPadding: const EdgeInsets.all(15),
+                                  shape: const RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(15))),
+                                  content: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      const Column(children: [
+                                        Icon(
+                                          Icons.error_rounded,
+                                          size: 30,
+                                          color: Colors.red,
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text(
+                                          "Are you sure?",
+                                          style: TextStyle(
+                                            fontSize: 25,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text(
+                                          "Do you want to logout?",
+                                          style: TextStyle(fontSize: 14),
+                                        ),
+                                      ]),
+                                      const SizedBox(height: 10),
+                                      Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            ElevatedButton(
+                                                style: const ButtonStyle(
+                                                    backgroundColor:
+                                                        MaterialStatePropertyAll(
+                                                            Color.fromARGB(255,
+                                                                241, 104, 94))),
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                child: SizedBox(
+                                                    width: 80,
+                                                    height: 40,
+                                                    child: Center(
+                                                      child: const Text(
+                                                        "No",
+                                                        style: TextStyle(
+                                                            fontSize: 15),
+                                                      ),
+                                                    ))),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            ElevatedButton(
+                                                style: const ButtonStyle(
+                                                    backgroundColor:
+                                                        MaterialStatePropertyAll(
+                                                            Colors.teal)),
+                                                onPressed: () {
+                                                  Get.offAll(
+                                                      () => SplashScreen());
+                                                },
+                                                child: SizedBox(
+                                                    width: 80,
+                                                    height: 40,
+                                                    child: Center(
+                                                      child: const Text(
+                                                        "Yes",
+                                                        style: TextStyle(
+                                                            fontSize: 15),
+                                                      ),
+                                                    ))),
+                                          ])
+                                    ],
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                          child: SizedBox(
+                              height: 40,
+                              width: 40,
+                              child: Image.asset('images/switch.png')),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        )
+                      ],
+                    )
                   ],
                 ),
                 const SizedBox(
@@ -396,7 +519,7 @@ Widget dayBookingDetails() {
                                             Text(
                                               "Are you sure?",
                                               style: TextStyle(
-                                                fontSize: 20,
+                                                fontSize: 25,
                                               ),
                                             ),
                                             SizedBox(
@@ -404,7 +527,7 @@ Widget dayBookingDetails() {
                                             ),
                                             Text(
                                               "Do you want to delete?",
-                                              style: TextStyle(fontSize: 12),
+                                              style: TextStyle(fontSize: 14),
                                             ),
                                           ]),
                                           const SizedBox(height: 10),
@@ -424,8 +547,12 @@ Widget dayBookingDetails() {
                                                     onPressed: () {
                                                       Navigator.pop(context);
                                                     },
-                                                    child:
-                                                        const Text("Cancel")),
+                                                    child: SizedBox(
+                                                        width: 80,
+                                                        height: 40,
+                                                        child: Center(
+                                                            child: const Text(
+                                                                "Cancel")))),
                                                 const SizedBox(
                                                   width: 10,
                                                 ),
@@ -447,7 +574,12 @@ Widget dayBookingDetails() {
                                                           .catchError((error) =>
                                                               log("Failed to add user: $error"));
                                                     },
-                                                    child: const Text("Yes")),
+                                                    child: SizedBox(
+                                                        height: 40,
+                                                        width: 80,
+                                                        child: Center(
+                                                            child: const Text(
+                                                                "Yes")))),
                                               ])
                                         ],
                                       ),

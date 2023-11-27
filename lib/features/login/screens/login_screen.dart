@@ -8,7 +8,6 @@ class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
 
   var loginController = Get.put(LoginController());
-
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;

@@ -53,12 +53,14 @@ class HomeScreenController extends GetxController {
 
   RxList filteredSearchList = [].obs;
   String? clientId = "0";
+  String? clientName = "";
 
   @override
   void onInit() async {
     super.onInit();
 
     clientId = Shared().getClientId();
+    clientName = Shared().getClientName();
     // clientId = await CommonStorage().clientId;
   }
 
@@ -224,8 +226,11 @@ class HomeScreenController extends GetxController {
       showToast(
           msg:
               "${selectedTeam.text} booking for slot from $fromTime to $toTime  for the date ${dateControllerEntry.text.toString()} is confirmed",
-          backgroundColor: Colors.grey,
+          backgroundColor: Colors.teal,
           textColor: Colors.white);
+      openWhatsApp(mobileNumber.text,
+          "Your Booking for slot from $fromTime to $toTime ${dateControllerEntry.text == "" ? "for today" : "for the date ${dateControllerEntry.text.toString()}"}  is confirmed.");
+
       log("User Added $value");
     }).catchError((error) {
       log("Failed to add user: $error");

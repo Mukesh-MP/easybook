@@ -11,6 +11,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:flutter_sms/flutter_sms.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:whatsapp/whatsapp.dart';
 
 // ignore: must_be_immutable
@@ -268,10 +269,9 @@ class TeamScreen extends StatelessWidget {
                             ),
                             InkWell(
                                 onTap: () {
-                                  whatsApp.messagesText(
-                                      message: "Hi, $teamName",
-                                      to: 919645691244,
-                                      previewUrl: true);
+                                  openWhatsApp(
+                                      snapshot.data!.docs[0]["mobileNumber"],
+                                      "Hi, $teamName");
                                 },
                                 child: SizedBox(
                                     height: 25,
@@ -418,18 +418,40 @@ _callNumber(number) async {
   bool? res = await FlutterPhoneDirectCaller.callNumber(number);
 }
 
-void sendSMSText(String message, List<String> recipents) async {
-  String result = await sendSMS(message: message, recipients: recipents)
-      .catchError((onError) {
-    // ignore: invalid_return_type_for_catch_error
-    return showToast(
-        msg: "SMS not sent",
-        backgroundColor: Colors.grey,
-        textColor: Colors.white);
-  });
+Future<void> sendSMSText(String message, List<String> recipients) async {
+  try {
+    String? result = await sendSMS(
+      message: message,
+      recipients: recipients,
+      sendDirect: true,
+    );
+    showToast(
+      msg: result.toString(),
+      backgroundColor: Colors.teal,
+      textColor: Colors.white,
+    );
+    // Handle success case if needed
+  } catch (error) {
+    showToast(
+      msg: "SMS not sent",
+      backgroundColor: Colors.grey,
+      textColor: Colors.white,
+    );
 
-  // showToast(
-  //     msg: "SMS send successfully",
-  //     backgroundColor: Colors.grey,
-  //     textColor: Colors.white);
+    // Handle error case if needed
+  }
+}
+
+void openWhatsApp(String phoneNumber, String message) async {
+  Uri url = Uri(
+      scheme: 'https',
+      host: "wa.me",
+      path: "/+91$phoneNumber/?text=${Uri.encodeComponent(message)}");
+  // "https://wa.me/$phoneNumber/?text=${Uri.encodeComponent(message)}";
+
+  if (await canLaunchUrl(url)) {
+    await launchUrl(url);
+  } else {
+    throw 'Could not launch $url';
+  }
 }
