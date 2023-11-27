@@ -79,6 +79,7 @@ class LoginScreen extends StatelessWidget {
             InkWell(
                 onTap: () {
                   loginController.getClientDetails();
+                  FocusScope.of(context).unfocus();
                 },
                 child: Container(
                   height: size.height * 0.06,
