@@ -208,8 +208,9 @@ class HomeScreen extends StatelessWidget {
                         ),
                         ElevatedButton(
                             style: const ButtonStyle(
-                                backgroundColor:
-                                    MaterialStatePropertyAll(Colors.teal)),
+                                backgroundColor: MaterialStatePropertyAll(
+                              Color.fromARGB(255, 7, 167, 167),
+                            )),
                             onPressed: () {
                               popupSheet(context);
                             },
@@ -336,7 +337,7 @@ class HomeScreen extends StatelessWidget {
                       padding: const EdgeInsets.only(
                           top: 15, bottom: 15, left: 10, right: 10),
                       decoration: const BoxDecoration(
-                        color: Colors.teal,
+                        color: Color.fromARGB(255, 7, 167, 167),
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(10),
                             topRight: Radius.circular(10)),
@@ -383,30 +384,51 @@ class HomeScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SingleChildScrollView(
-                      child: Container(
-                          padding: const EdgeInsets.only(
-                              top: 0, bottom: 0, left: 10, right: 10),
-                          decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(10),
-                                  bottomRight: Radius.circular(10)),
-                              color: Color.fromARGB(255, 220, 246, 250)),
-                          height: MediaQuery.of(context).size.height * .65,
-                          child: Obx(
-                            () {
-                              if (homeController.isloading.value) {
-                                return Center(
-                                  child: CircularProgressIndicator(),
-                                );
-                              } else {
-                                return dayBookingDetails();
-                              }
-                            },
-                          )),
-                    ),
+                    Container(
+                        padding: const EdgeInsets.only(
+                            top: 0, bottom: 0, left: 10, right: 10),
+                        decoration: const BoxDecoration(
+                          gradient: LinearGradient(
+                              begin: Alignment.topRight,
+                              end: Alignment.bottomCenter,
+                              colors: [
+                                Color.fromARGB(255, 7, 167, 167),
+                                Color.fromARGB(255, 64, 211, 236),
+                                Color.fromARGB(255, 154, 231, 245),
+                                Color.fromARGB(255, 192, 242, 250),
+                                Color.fromARGB(255, 245, 249, 249),
+                                Color.fromARGB(255, 248, 251, 251),
+                                Colors.white,
+                                Color.fromARGB(255, 154, 231, 245),
+                                Color.fromARGB(255, 86, 216, 239)
+                              ]),
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(00),
+                              bottomRight: Radius.circular(00)),
+                          // color: Color.fromARGB(255, 220, 246, 250)
+                        ),
+                        height: MediaQuery.of(context).size.height * .65,
+                        child: Obx(
+                          () {
+                            if (homeController.isloading.value) {
+                              return Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            } else {
+                              return dayBookingDetails();
+                            }
+                          },
+                        )),
                   ],
-                )
+                ),
+                Expanded(
+                    child: Container(
+                  decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 86, 216, 239),
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(10),
+                          bottomRight: Radius.circular(10))),
+                ))
               ],
             ),
           ),

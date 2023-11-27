@@ -293,7 +293,7 @@ class TeamScreen extends StatelessWidget {
                         padding: const EdgeInsets.only(
                             top: 15, bottom: 15, left: 10, right: 10),
                         decoration: const BoxDecoration(
-                          color: Colors.teal,
+                          color: Color.fromARGB(255, 7, 167, 167),
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10),
                               topRight: Radius.circular(10)),
@@ -351,6 +351,18 @@ class TeamScreen extends StatelessWidget {
                             padding: const EdgeInsets.only(
                                 top: 10, bottom: 10, left: 10, right: 10),
                             decoration: const BoxDecoration(
+                                gradient: LinearGradient(
+                                    begin: Alignment.topRight,
+                                    end: Alignment.bottomCenter,
+                                    colors: [
+                                      Color.fromARGB(255, 7, 167, 167),
+                                      Color.fromARGB(255, 86, 216, 239),
+                                      Color.fromARGB(255, 237, 246, 246),
+                                      Color.fromARGB(255, 235, 249, 249),
+                                      Color.fromARGB(255, 245, 249, 249),
+                                      Color.fromARGB(255, 248, 251, 251),
+                                      Color.fromARGB(255, 12, 170, 170),
+                                    ]),
                                 borderRadius: BorderRadius.only(
                                     bottomLeft: Radius.circular(10),
                                     bottomRight: Radius.circular(10)),

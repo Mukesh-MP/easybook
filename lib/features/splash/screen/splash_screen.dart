@@ -20,9 +20,13 @@ class SplashScreen extends StatelessWidget {
                 begin: Alignment.topRight,
                 end: Alignment.bottomLeft,
                 colors: [
-              Color.fromARGB(255, 77, 142, 146),
-              Color.fromARGB(255, 58, 178, 189),
-              Color.fromARGB(255, 108, 168, 172)
+              Color.fromARGB(255, 7, 167, 167),
+              Color.fromARGB(255, 86, 216, 239),
+              Color.fromARGB(255, 237, 246, 246),
+              Color.fromARGB(255, 235, 249, 249),
+              Color.fromARGB(255, 245, 249, 249),
+              Color.fromARGB(255, 248, 251, 251),
+              Color.fromARGB(255, 12, 170, 170),
             ])),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
