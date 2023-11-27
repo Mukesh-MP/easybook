@@ -4,9 +4,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easybook/features/home/controller/homescreen_controller.dart';
 import 'package:easybook/features/home/screens/searchscreen.dart';
 import 'package:easybook/features/home/widgets/bottomsheet.dart';
-import 'package:easybook/features/login/controller/login_controller.dart';
+
 import 'package:easybook/features/splash/screen/splash_screen.dart';
-import 'package:easybook/global/securestorage.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -296,6 +296,7 @@ class HomeScreen extends StatelessWidget {
 Widget dayBookingDetails() {
   var homeController = Get.put(HomeScreenController());
   FirebaseFirestore db = FirebaseFirestore.instance;
+
   // getTeamList();
   final ref = db
       .collection("bookings${homeController.clientId}")

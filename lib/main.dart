@@ -1,7 +1,9 @@
 import 'package:easybook/features/splash/screen/splash_screen.dart';
 import 'package:easybook/global/global.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -1,10 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easybook/features/home/screens/homescreen.dart';
 import 'package:easybook/features/splash/screen/splash_screen.dart';
-import 'package:easybook/global/configs.dart';
-import 'package:easybook/global/securestorage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // int? clientId = 1;
 
@@ -16,6 +15,9 @@ class LoginController extends GetxController {
   String? clientPassword;
 
   getClientDetails() async {
+    // Obtain shared preferences.
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
     FirebaseFirestore data = FirebaseFirestore.instance;
     QuerySnapshot querySnapshotClientId = await data
         .collection("client")
@@ -34,8 +36,10 @@ class LoginController extends GetxController {
 
       if (clientPassword.toString().toUpperCase() ==
           passwordController.text.toString().toUpperCase()) {
-        // int clientId = clientData![0]["clientId"];
+        int clientId = clientData![0]["clientId"];
         // CommonStorage().clientId = clientId.toString();
+
+        await prefs.setString('clientId', clientId.toString());
 
         Get.to(() => HomeScreen());
       } else {

@@ -2,16 +2,16 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easybook/features/home/controller/homescreen_controller.dart';
 
 import 'package:easybook/features/home/screens/homescreen.dart';
-import 'package:easybook/features/login/controller/login_controller.dart';
+
 import 'package:easybook/features/splash/screen/splash_screen.dart';
 import 'package:easybook/features/team/controller/team_controller.dart';
-import 'package:easybook/global/configs.dart';
-import 'package:easybook/global/securestorage.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:flutter_sms/flutter_sms.dart';
+import 'package:whatsapp/whatsapp.dart';
 
 // ignore: must_be_immutable
 class TeamScreen extends StatelessWidget {
@@ -23,13 +23,15 @@ class TeamScreen extends StatelessWidget {
 
   var teamController = Get.put(TeamController());
   var homeController = Get.put(HomeScreenController());
-  String? clientId = "1";
+
   // CommonStorage().clientId;
+
+  WhatsApp whatsApp = WhatsApp();
 
   @override
   Widget build(BuildContext context) {
     final Stream<QuerySnapshot> messageStream = FirebaseFirestore.instance
-        .collection('bookings${clientId}')
+        .collection('bookings${homeController.clientId}')
         .where("teamId", isEqualTo: teamId)
         // .orderBy("date", descending: true)
         // .orderBy("date", descending: true)
@@ -261,6 +263,22 @@ class TeamScreen extends StatelessWidget {
                                 color: Colors.blue,
                               ),
                             ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            InkWell(
+                                onTap: () {
+                                  whatsApp.messagesText(
+                                      message: "Hi, $teamName",
+                                      to: 919645691244,
+                                      previewUrl: true);
+                                },
+                                child: SizedBox(
+                                    height: 25,
+                                    width: 25,
+                                    child: Image.asset(
+                                      "images/whatsapp.png",
+                                    ))),
                           ],
                         ),
                       ],

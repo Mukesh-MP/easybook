@@ -1,4 +1,3 @@
-import 'package:easybook/features/home/screens/homescreen.dart';
 import 'package:easybook/features/login/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

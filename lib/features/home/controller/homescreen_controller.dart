@@ -4,13 +4,13 @@ import 'package:easybook/features/home/model/bookingdetails_model.dart';
 
 import 'package:easybook/features/splash/screen/splash_screen.dart';
 import 'package:easybook/features/team/screens/team_screen.dart';
-import 'package:easybook/global/configs.dart';
-import 'package:easybook/global/securestorage.dart';
+import 'package:easybook/global/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // List<BookingDetails> bookingDetails = [];
 
@@ -52,11 +52,13 @@ class HomeScreenController extends GetxController {
   List<BookingDetails> uniqueTeamList = [];
 
   RxList filteredSearchList = [].obs;
-  String? clientId = "1";
+  String? clientId = "0";
 
   @override
   void onInit() async {
     super.onInit();
+
+    clientId = Shared().getClientId();
     // clientId = await CommonStorage().clientId;
   }
 

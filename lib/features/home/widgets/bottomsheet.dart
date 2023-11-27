@@ -65,7 +65,7 @@ popupSheet(context) {
                   children: [
                     SizedBox(
                       height: 40,
-                      width: MediaQuery.of(context).size.width * .36,
+                      width: MediaQuery.of(context).size.width * .45,
                       child: TextFormField(
                         onTap: () async {
                           await controller.selectDatePickEntry(
@@ -186,7 +186,7 @@ popupSheet(context) {
                         }),
                       )),
                   const SizedBox(
-                    width: 5,
+                    width: 15,
                   ),
                   const Text("To :"),
                   SizedBox(
